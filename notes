@@ -3,3 +3,5 @@ npm init -y
 npm i express knex pg
 
 create dir routes
+
+make dir for db
