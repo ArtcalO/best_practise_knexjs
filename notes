@@ -5,3 +5,7 @@ npm i express knex pg
 create dir routes
 
 make dir for db
+	npx knex init
+	move the knefile to db
+	 //apply migrations
+	npm knex migrat:latest --knexfile db/knefile.js
