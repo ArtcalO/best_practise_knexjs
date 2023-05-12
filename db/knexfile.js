@@ -1,4 +1,4 @@
-const {knexSnakeCaseMappers} = require('objection');
+const {knexSnakeCaseMappers } = require('objection');
 
 module.exports = {
 
@@ -19,7 +19,7 @@ module.exports = {
     seeds:{
       directory:'./seeds'
     },
-    ...knexSnakeCaseMappers,
+    ...knexSnakeCaseMappers(),
   },
 
 };
