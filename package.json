@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve":"nodemon index.js",
+    "migrate":"npx knex migrate:latest --knexfile db/knexfile.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
