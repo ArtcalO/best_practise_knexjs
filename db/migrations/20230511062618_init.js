@@ -23,7 +23,6 @@ exports.up = function(knex) {
 			table.float("unit_price").notNullable();
 			table.float("total_price").notNullable();
 			table.timestamps(true, true);
-
 		})
 };
 

@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "migrate up":"npx knex migrate:up",
-    "migrate down":"npx knex migrate:down",
+    "make-seed":"npx knex seed:make dev --knexfile ./db/knexfile.js",
+    "seeds":"npx knex ",
     "serve": "nodemon index.js",
-    "migrate": "npx knex migrate:latest --knexfile db/knexfile.js",
+    "migrate": "npx knex migrate:latest --knexfile ./db/knexfile.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
