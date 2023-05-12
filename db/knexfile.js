@@ -1,16 +1,12 @@
-// Update with your config settings.
 
-/**
- * @type { Object.<string, import("knex").Knex.Config> }
- */
 module.exports = {
 
-  developpement: {
+  development: {
     client: 'postgresql',
     connection: {
-      database: 'recipe_db',
-      user:     'hp',
-      password: null,
+      database: 'receipt_db',
+      user:     'postgres',
+      password: "root",
     },
     pool: {
       min: 2,
