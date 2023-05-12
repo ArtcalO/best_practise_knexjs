@@ -32,4 +32,5 @@ exports.down = function(knex) {
 			.dropTableIfExists('invoice')
 			.dropTableIfExists('items')
 			.dropTableIfExists('invoice_items')
+			.dropTableIfExists('person')
 };

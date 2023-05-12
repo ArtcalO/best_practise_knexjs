@@ -1,7 +1,7 @@
 const db = require('../db/db')
 
 class InvoiceItemsDAO{
-	async createPerson(invoiceId,itemId,quantity,unitPrice,totalPrice){
+	async createInvoiceItems(invoiceId,itemId,quantity,unitPrice,totalPrice){
 		const [id] = await db('invoice_items').insert({
 			invoice_id:invoiceId,
 			item_id:itemId,
