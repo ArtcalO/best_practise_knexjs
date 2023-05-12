@@ -1,7 +1,7 @@
 const db = require('../db/db')
 
 class PersonDAO{
-	async createPerson(firstName, lastName, email){
+	async createPerson(email, firstName, lastName){
 		const [id] = await db('person').insert({
 			email,
 			first_name:firstName,

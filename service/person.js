@@ -1,8 +1,8 @@
 const personDAO =  require('../dao/person')
 class PersonService{
 	createPerson(personDto){
-		const {firstName, lastName, email} = personDto
-		return personDAO.createPerson(firstName, lastName, email)
+		const {email, firstName, lastName} = personDto
+		return personDAO.createPerson(email, firstName, lastName)
 	}
 
 }
