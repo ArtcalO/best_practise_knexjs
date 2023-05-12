@@ -17,8 +17,8 @@ exports.up = function(knex) {
 		})
 		.createTable('invoice_items', table=>{
 			table.increments('id');
-			table.integer('invoice_id').reference('id').inTable('invoice');
-			table.integer('item_id').reference('id').inTable('items');
+			table.integer('invoice_id').references('id').inTable('invoice');
+			table.integer('item_id').references('id').inTable('items');
 			table.integer("quantity").notNullable();
 			table.float("unit_price").notNullable();
 			table.float("total_price").notNullable();
