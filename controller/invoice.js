@@ -21,6 +21,16 @@ class InvoiceController{
 			res.status(500).json("Une erreur s'est produite");
 		}
 	}
+	async deleteInvoiceInvoice(req, res){
+		try{
+			const id = parseInt(req.params.id)
+			const obj =  await invoiceService.deleteInvoice(id);
+			res.status(201).json(obj);
+		} catch (err){
+			console.log(err)
+			res.status(500).json("Une erreur s'est produite");
+		}
+	}
 }
 
 module.exports = new InvoiceController()

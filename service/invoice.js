@@ -8,6 +8,9 @@ class InvoiceService{
 	updateInvoice(id, invoiceDTO){
 		return invoiceDAO.updateInvoice(id, invoiceDTO)
 	};
+	deleteInvoice(id){
+		return invoiceDAO.deleteInvoice(id)
+	};
 
 }
 

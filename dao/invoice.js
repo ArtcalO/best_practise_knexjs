@@ -12,11 +12,13 @@ class InvoiceDAO{
 	};
 
 	async updateInvoice(id, data){
-		console.log("data patch=======", data)
-		console.log("data id=======", id)
 		const updatedInvoice = await invoiceModel.query().patchAndFetchById(id,data);
-
 		return updatedInvoice;
+	};
+
+	async deleteInvoice(id){
+		const deletedInvoice = await invoiceModel.query().deleteById(id);
+		return deletedInvoice;
 	}
 }
 
