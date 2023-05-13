@@ -19,7 +19,7 @@ class InvoiceDAO{
 	async deleteInvoice(id){
 		const deletedInvoice = await invoiceModel.query().deleteById(id);
 		return deletedInvoice;
-	}
+	};
 }
 
 module.exports = new InvoiceDAO();
