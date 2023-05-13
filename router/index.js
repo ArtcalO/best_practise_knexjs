@@ -1,6 +1,7 @@
 const express = require('express');
-const personController = require('../controller/person');
+const invoiceController = require('../controller/invoice');
 
 const router = express.Router();
-router.post('/person', personController.createPerson);
+router.post('/invoice', invoiceController.createInvoice);
+router.patch('/invoice/:id', invoiceController.updateInvoice);
 module.exports =  router;

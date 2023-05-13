@@ -1,8 +1,8 @@
 const invoiceItemsDAO =  require('../dao/invoiceItems')
 class InvoiceItemsService{
 	createInvoiceItems(invoiceItemsDTO){
-		const {invoiceId,itemId,quantity,unitPrice,totalPrice} = invoiceItemsDTO
-		return invoiceItemsDAO.createInvoiceItems(invoiceId,itemId,quantity,unitPrice,totalPrice)
+		const {invoice_id,item_id,quantity,unit_price,total_price} = invoiceItemsDTO
+		return invoiceItemsDAO.createInvoiceItems(invoice_id,item_id,quantity,unit_price,total_price)
 	}
 
 }
