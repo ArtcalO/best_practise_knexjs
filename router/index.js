@@ -1,6 +1,7 @@
 const express = require('express');
 const invoiceController = require('../controller/invoice');
 const itemsController = require('../controller/items');
+const invoiceItemsController = require('../controller/invoiceItems');
 
 const router = express.Router();
 router.post('/invoice', invoiceController.createInvoice);
@@ -18,10 +19,11 @@ router.patch('/items/:id', itemsController.updateItems);
 router.delete('/items/:id', itemsController.deleteItems);
 
 
-/*router.post('/invoice-items', invoiceController.createInvoice);
-router.get('/invoice-items/:id', invoiceController.getInvoice);
-router.patch('/invoice-items/:id', invoiceController.updateInvoice);
-router.delete('/invoice-items/:id', invoiceController.deleteInvoice);*/
+router.post('/invoice-items', invoiceItemsController.createInvoiceItems);
+router.get('/invoice-items', invoiceItemsController.retrieveAllInvoiceItems);
+router.get('/invoice-items/:id', invoiceItemsController.getInvoiceItems);
+router.patch('/invoice-items/:id', invoiceItemsController.updateInvoiceItems);
+router.delete('/invoice-items/:id', invoiceItemsController.deleteInvoiceItems);
 
 
 module.exports =  router;
