@@ -12,7 +12,11 @@ class InvoiceService{
 		return invoiceDAO.deleteInvoice(id)
 	};
 	retrieveInvoice(id){
+		console.log(id)
 		return invoiceDAO.retrieveInvoice(id)
+	};
+	retrieveAllInvoice(){
+		return invoiceDAO.retrieveAllInvoice()
 	};
 	async splitInvoice(id, data){
 		let invoicesTab=[]

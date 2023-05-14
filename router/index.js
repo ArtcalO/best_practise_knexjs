@@ -4,6 +4,7 @@ const invoiceController = require('../controller/invoice');
 const router = express.Router();
 router.post('/invoice', invoiceController.createInvoice);
 router.get('/invoice/:id', invoiceController.retrieveInvoice);
+router.get('/invoice', invoiceController.retrieveAllInvoice);
 router.patch('/invoice/:id', invoiceController.updateInvoice);
 router.delete('/invoice/:id', invoiceController.deleteInvoice);
 router.post('/invoice/split-invoice/:id', invoiceController.splitInvoice);
