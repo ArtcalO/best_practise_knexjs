@@ -27,7 +27,7 @@ class InvoiceItemsDAO{
 		return retrievedItems;
 	};
 	async retrieveAllInvoiceItems(){
-		const retrievedItems = await invoiceItemsModel.query();
+		const retrievedItems = await invoiceItemsModel.query().withGraphFetched('[invoice,items]');
 		return retrievedItems;
 	};
 }
