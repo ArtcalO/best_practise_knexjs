@@ -20,6 +20,10 @@ class InvoiceDAO{
 		const deletedInvoice = await invoiceModel.query().deleteById(id);
 		return deletedInvoice;
 	};
+	async retrieveInvoice(id){
+		const retrievedInvoice = await invoiceModel.query().findById(id);
+		return retrievedInvoice;
+	};
 }
 
 module.exports = new InvoiceDAO();
