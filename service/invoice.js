@@ -11,19 +11,30 @@ class InvoiceService{
 	deleteInvoice(id){
 		return invoiceDAO.deleteInvoice(id)
 	};
+	retrieveInvoice(id){
+		console.log(id)
+		return invoiceDAO.retrieveInvoice(id)
+	};
+	retrieveAllInvoice(){
+		return invoiceDAO.retrieveAllInvoice()
+	};
 	async splitInvoice(id, data){
 		let invoicesTab=[]
 		const existingInvoice = data.shift()
 		await this.updateInvoice(id, existingInvoice).then((res)=>{
 			invoicesTab.push(res)
 		})
-		data.forEach(async d=>{
-			await this.createInvoice(d).then((res)=>{
-				invoicesTab.push(res)
-				console.log(invoicesTab)
+		let paused=true
+		if(paused)
+			data.forEach(async d=>{
+				await this.createInvoice(d).then((res)=>{
+					invoicesTab.push(res)
+					console.log(invoicesTab)
+				})
+				paused=false
 			})
-		})
-		return invoicesTab
+		if(!paused)
+			return invoicesTab
 	};
 
 }

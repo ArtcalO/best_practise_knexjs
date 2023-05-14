@@ -2,23 +2,56 @@ const invoiceModel = require('../db/models/invoice')
 
 class InvoiceDAO{
 	async createInvoice(number, customerName, total){
-		const createdInvoice = await invoiceModel.query().insert({
-			number,
-			customer_name: customerName,
-			total,
-		});
-
-		return createdInvoice;
+		try{
+			const createdInvoice = await invoiceModel.transaction(async trx=>{
+				const createdInvoice = await invoiceModel.query(trx).insert({
+					number,
+					customer_name: customerName,
+					total,
+				});
+				return createdInvoice
+			})
+			return createdInvoice;
+			console.log("Invoice created successfully !")
+		}catch(err){
+			console.log(err);
+		}	
 	};
 
 	async updateInvoice(id, data){
-		const updatedInvoice = await invoiceModel.query().patchAndFetchById(id,data);
-		return updatedInvoice;
+		try{
+			const updatedInvoice = await invoiceModel.transaction(async trx=>{
+				const updatedInvoice = await invoiceModel.query(trx).patchAndFetchById(id,data);
+				return updatedInvoice;
+			})
+			return updatedInvoice
+			console.log("Invoice updated successfully !")
+		}catch(err){
+			console.log("Invoice has not been updated !")
+			console.log(err);
+		}
 	};
 
 	async deleteInvoice(id){
-		const deletedInvoice = await invoiceModel.query().deleteById(id);
-		return deletedInvoice;
+		try{
+			const deletedInvoice = await invoiceModel.transaction(async trx=>{
+				const deletedInvoice = await invoiceModel.query(trx).deleteById(id);
+				return deletedInvoice;
+			})
+			return deletedInvoice
+			console.log("Invoice deleted successfully !")
+		}catch(err){
+			console.log("Invoice has not been deleted !")
+			console.log(err);
+		}
+	};
+	async retrieveInvoice(id){
+		const retrievedInvoice = await invoiceModel.query().findById(id);
+		return retrievedInvoice;
+	};
+	async retrieveAllInvoice(){
+		const retrievedInvoice = await invoiceModel.query();
+		return retrievedInvoice;
 	};
 }
 

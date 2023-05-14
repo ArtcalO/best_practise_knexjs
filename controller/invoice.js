@@ -25,6 +25,25 @@ class InvoiceController{
 		try{
 			const id = parseInt(req.params.id)
 			const obj =  await invoiceService.deleteInvoice(id);
+			res.status(201).json("Invoice deleted successfully !");
+		} catch (err){
+			console.log(err)
+			res.status(500).json("Une erreur s'est produite");
+		}
+	}
+	async retrieveInvoice(req, res){
+		try{
+			const id = parseInt(req.params.id)
+			const obj =  await invoiceService.retrieveInvoice(id);
+			res.status(201).json(obj);
+		} catch (err){
+			console.log(err)
+			res.status(500).json("Une erreur s'est produite");
+		}
+	}
+	async retrieveAllInvoice(req, res){
+		try{
+			const obj =  await invoiceService.retrieveAllInvoice();
 			res.status(201).json(obj);
 		} catch (err){
 			console.log(err)
