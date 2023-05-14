@@ -3,7 +3,7 @@ const itemsModel = require('../db/models/items')
 class ItemsDAO{
 	async createItems(name, sale_price){
 		const createdItems = await itemsModel.query().insert({
-			number,
+			name,
 			sale_price,
 		});
 

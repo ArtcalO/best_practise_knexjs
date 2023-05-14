@@ -22,12 +22,10 @@ class InvoiceDAO{
 	};
 	async retrieveInvoice(id){
 		const retrievedInvoice = await invoiceModel.query().findById(id);
-		console.log(retrievedInvoice)
 		return retrievedInvoice;
 	};
 	async retrieveAllInvoice(){
 		const retrievedInvoice = await invoiceModel.query();
-		console.log(retrievedInvoice)
 		return retrievedInvoice;
 	};
 }
