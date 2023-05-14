@@ -1,7 +1,7 @@
 const invoiceItemsModel = require('../db/models/invoiceItems')
 
 class InvoiceItemsDAO{
-	async createItems(invoiceId,itemId,quantity,unitPrice,totalPrice){
+	async createInvoiceItems(invoiceId,itemId,quantity,unitPrice,totalPrice){
 		const createdItems = await invoiceItemsModel.query().insert({
 			invoiceId,
 			itemId,
