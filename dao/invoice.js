@@ -20,10 +20,11 @@ class InvoiceDAO{
 
 	async updateInvoice(id, data){
 		try{
-			const ctrx = await invoiceModel.transaction(async trx=>{
+			const updatedInvoice = await invoiceModel.transaction(async trx=>{
 				const updatedInvoice = await invoiceModel.query(trx).patchAndFetchById(id,data);
 				return updatedInvoice;
 			})
+			return updatedInvoice
 			console.log("Invoice updated successfully !")
 		}catch(err){
 			console.log("Invoice has not been updated !")
@@ -33,10 +34,11 @@ class InvoiceDAO{
 
 	async deleteInvoice(id){
 		try{
-			const ctrx = await invoiceModel.transaction(async trx=>{
+			const deletedInvoice = await invoiceModel.transaction(async trx=>{
 				const deletedInvoice = await invoiceModel.query(trx).deleteById(id);
 				return deletedInvoice;
 			})
+			return deletedInvoice
 			console.log("Invoice deleted successfully !")
 		}catch(err){
 			console.log("Invoice has not been deleted !")
