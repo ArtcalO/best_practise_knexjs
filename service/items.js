@@ -13,6 +13,9 @@ class ItemsService{
 	retrieveItems(id){
 		return itemsDAO.retrieveItems(id)
 	};
+	retrieveAllItems(){
+		return itemsDAO.retrieveAllItems()
+	};
 
 
 }
