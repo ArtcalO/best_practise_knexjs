@@ -43,7 +43,7 @@ class ItemsController{
 		try{
 			const id = parseInt(req.params.id)
 			const obj =  await itemsService.deleteItems(id);
-			res.status(201).json(obj);
+			res.status(201).json("Items deleted successfully !");
 		} catch (err){
 			console.log(err)
 			res.status(500).json("Une erreur s'est produite");
