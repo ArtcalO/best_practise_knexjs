@@ -3,7 +3,20 @@ class InvoiceItemsService{
 	createInvoiceItems(invoiceItemsDTO){
 		const {invoice_id,item_id,quantity,unit_price,total_price} = invoiceItemsDTO
 		return invoiceItemsDAO.createInvoiceItems(invoice_id,item_id,quantity,unit_price,total_price)
-	}
+	};
+	updateInvoiceItems(id, invoiceDTO){
+		return invoiceItemsDAO.updateInvoiceItems(id, invoiceDTO)
+	};
+	deleteInvoiceItems(id){
+		return invoiceItemsDAO.deleteInvoiceItems(id)
+	};
+	retrieveInvoiceItems(id){
+		console.log(id)
+		return invoiceItemsDAO.retrieveInvoiceItems(id)
+	};
+	retrieveAllInvoiceItems(){
+		return invoiceItemsDAO.retrieveAllInvoiceItems()
+	};
 
 }
 
