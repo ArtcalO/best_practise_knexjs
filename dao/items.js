@@ -2,12 +2,13 @@ const itemsModel = require('../db/models/items')
 
 class ItemsDAO{
 
-	async createItems(name, sale_price){
+	async createItems(name, sale_price, quantity){
 		try{
 			const createdItems = await itemsModel.transaction(async trx=>{
 				const createdItems = await itemsModel.query(trx).insert({
 					name:name,
 					sale_price:sale_price,
+					quantity:quantity,
 				});
 				return createdItems;
 			})

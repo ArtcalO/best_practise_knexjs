@@ -19,8 +19,8 @@ exports.seed = async function(knex){
   ]);
 
   await knex('items').insert([
-    {id:1, name:"Orange", salePrice:1500},
-    {id:2, name:"Avocado", salePrice:1500},
+    {id:1, name:"Orange",quantity:20, salePrice:1500},
+    {id:2, name:"Avocado",quantity:20, salePrice:1500},
   ]);
 
   await knex('invoice_items').insert([

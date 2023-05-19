@@ -2,7 +2,7 @@ const itemsDAO =  require('../dao/items')
 class ItemsService{
 	createItems(itemsDTO){
 		const {name, sale_price} = itemsDTO
-		return itemsDAO.createItems(name, sale_price)
+		return itemsDAO.createItems(name, sale_price, quantity)
 	};
 	updateItems(id, itemsDTO){
 		return itemsDAO.updateItems(id, itemsDTO)

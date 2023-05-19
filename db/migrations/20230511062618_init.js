@@ -11,6 +11,7 @@ exports.up = function(knex) {
 		.createTable('items', table=>{
 			table.increments('id');
 			table.string("name").notNullable();
+			table.integer("quantity").notNullable();
 			table.float("sale_price").notNullable();
 			table.timestamps(true, true);
 
