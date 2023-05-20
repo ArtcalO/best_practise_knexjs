@@ -11,7 +11,9 @@ class InvoiceController{
 				item['invoiceId']=id.id
 			    insertPromises.push(invoiceItemsDAO.objCreateInvoiceItems(item))
 			}
-			Promise.all(insertPromises)
+			Promise.all(insertPromises).then((res)=>console.log(res)).catch((err)=>{
+				invoiceService.deleteInvoice(id)
+			})
 			res.status(201).json(id);
 		} catch (err){
 			console.log(err)

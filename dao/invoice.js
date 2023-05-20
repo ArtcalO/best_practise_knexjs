@@ -50,7 +50,7 @@ class InvoiceDAO{
 		return retrievedInvoice;
 	};
 	async retrieveAllInvoice(){
-		const retrievedInvoice = await invoiceModel.query();
+		const retrievedInvoice = await invoiceModel.query().withGraphFetched('[items]');;
 		return retrievedInvoice;
 	};
 }
