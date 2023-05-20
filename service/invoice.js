@@ -1,8 +1,8 @@
 const invoiceDAO =  require('../dao/invoice')
 class InvoiceService{
 	createInvoice(invoiceDTO){
-		const {invoice, data} = invoiceDTO
-		return invoiceDAO.createInvoice(invoice, data)
+		const {number, customer_name, total} = invoiceDTO
+		return invoiceDAO.createInvoice(number, customer_name, total)
 	};
 
 	updateInvoice(id, invoiceDTO){

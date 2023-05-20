@@ -20,7 +20,20 @@ class InvoiceItemsDAO{
 			console.log("InvoiceItems has not been added !")
 			console.log(err);
 		}
-		
+	};
+
+	async objCreateInvoiceItems(obj){
+		try{
+			const createdInvoiceItems = await invoiceItemsModel.transaction(async trx=>{
+				const createdInvoiceItems = await invoiceItemsModel.query(trx).insert(obj);
+				return createdInvoiceItems;
+			})
+			return createdInvoiceItems
+			console.log("InvoiceItems added successfully !")
+		}catch(err){
+			console.log("InvoiceItems has not been added !")
+			console.log(err);
+		}
 	};
 
 	async updateItems(id, data){

@@ -1,8 +1,17 @@
 const invoiceService = require('../service/invoice');
+const invoiceItemsDAO = require('../dao/invoiceItems');
 class InvoiceController{
 	async createInvoice(req, res){
 		try{
-			const id =  await invoiceService.createInvoice(req.body);
+			const {invoice} = req.body
+			const {data} = req.body
+			const id =  await invoiceService.createInvoice(invoice);
+			let insertPromises = []
+			for(let item of data){
+				item['invoiceId']=id.id
+			    insertPromises.push(invoiceItemsDAO.objCreateInvoiceItems(item))
+			}
+			Promise.all(insertPromises)
 			res.status(201).json(id);
 		} catch (err){
 			console.log(err)
