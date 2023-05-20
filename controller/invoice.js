@@ -2,7 +2,6 @@ const invoiceService = require('../service/invoice');
 class InvoiceController{
 	async createInvoice(req, res){
 		try{
-			console.log(req.body)
 			const id =  await invoiceService.createInvoice(req.body);
 			res.status(201).json(id);
 		} catch (err){
