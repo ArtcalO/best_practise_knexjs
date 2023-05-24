@@ -2,7 +2,7 @@ exports.up = function(knex) {
 	return knex.schema
 		.createTable('invoice', table=>{
 			table.increments('id');
-			table.integer('number').notNullable();
+			table.bigInteger('number').notNullable();
 			table.string("customer_name").notNullable();
 			table.float("total").notNullable();
 			table.timestamps(true, true);

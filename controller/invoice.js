@@ -58,7 +58,7 @@ class InvoiceController{
 			let invoices = req.body
 			let toUpdateInvoice = invoices.shift()
 			const id = parseInt(req.params.id)
-			const obj =  await invoiceDAO.updateInvoice(id, toUpdateInvoice.invoice);
+			const obj =  await invoiceDAO.updateInvoice(id, toUpdateInvoice.invoice, toUpdateInvoice.data);
 			for(let item of invoices){
 				const {invoice} = item
 				const {data} = item

@@ -6,7 +6,6 @@ class InvoiceService{
 		const id = await invoiceDAO.createInvoice(number, customer_name, total)
 		let insertPromises = []
 		for(let item of data){
-			console.log("created before sent=============", id)
 			item['invoiceId']=id.id
 		    insertPromises.push(invoiceItemsDAO.objCreateInvoiceItems(item))
 		}
@@ -16,14 +15,13 @@ class InvoiceService{
 		
 		return id
 	};
-	updateInvoice(id, invoiceDTO){
+	updateInvoice(id, invoiceDTO, relatedData){
 		return invoiceDAO.updateInvoice(id, invoiceDTO)
 	};
 	deleteInvoice(id){
 		return invoiceDAO.deleteInvoice(id)
 	};
 	retrieveInvoice(id){
-		console.log(id)
 		return invoiceDAO.retrieveInvoice(id)
 	};
 	retrieveAllInvoice(){

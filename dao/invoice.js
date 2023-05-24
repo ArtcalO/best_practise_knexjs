@@ -18,11 +18,15 @@ class InvoiceDAO{
 		}	
 	};
 
-	async updateInvoice(id, data){
-		console.log("id=================", id, data)
+	async updateInvoice(id, data, relatedData){
 		try{
 			const updatedInvoice = await invoiceModel.transaction(async trx=>{
-				const updatedInvoice = await invoiceModel.query(trx).patchAndFetchById(id,data);
+				const updatedInvoice = await invoiceModel.query(trx).upsertGraph(
+					{
+						data,
+						items:relatedData
+					}
+					);
 				return updatedInvoice;
 			})
 			return updatedInvoice
