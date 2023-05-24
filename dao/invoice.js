@@ -23,7 +23,10 @@ class InvoiceDAO{
 			const updatedInvoice = await invoiceModel.transaction(async trx=>{
 				const updatedInvoice = await invoiceModel.query(trx).upsertGraph(
 					{
-						data,
+						id:id,
+						number:data.number,
+						customer_name:data.customerName,
+						total:data.total,
 						items:relatedData
 					}
 					);
