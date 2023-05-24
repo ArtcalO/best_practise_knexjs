@@ -1,10 +1,21 @@
 const invoiceDAO =  require('../dao/invoice')
+const invoiceItemsDAO =  require('../dao/invoiceItems')
 class InvoiceService{
-	createInvoice(invoiceDTO){
+	async createInvoice(invoiceDTO, data){
 		const {number, customer_name, total} = invoiceDTO
-		return invoiceDAO.createInvoice(number, customer_name, total)
+		const id = await invoiceDAO.createInvoice(number, customer_name, total)
+		let insertPromises = []
+		for(let item of data){
+			console.log("created before sent=============", id)
+			item['invoiceId']=id.id
+		    insertPromises.push(invoiceItemsDAO.objCreateInvoiceItems(item))
+		}
+		Promise.all(insertPromises).then((res)=>console.log(res)).catch((err)=>{
+			invoiceDAO.deleteInvoice(id.id)
+		})
+		
+		return id
 	};
-
 	updateInvoice(id, invoiceDTO){
 		return invoiceDAO.updateInvoice(id, invoiceDTO)
 	};
@@ -18,25 +29,6 @@ class InvoiceService{
 	retrieveAllInvoice(){
 		return invoiceDAO.retrieveAllInvoice()
 	};
-	async splitInvoice(id, data){
-		let invoicesTab=[]
-		const existingInvoice = data.shift()
-		await this.updateInvoice(id, existingInvoice).then((res)=>{
-			invoicesTab.push(res)
-		})
-		let paused=true
-		if(paused)
-			data.forEach(async d=>{
-				await this.createInvoice(d).then((res)=>{
-					invoicesTab.push(res)
-					console.log(invoicesTab)
-				})
-				paused=false
-			})
-		if(!paused)
-			return invoicesTab
-	};
-
 }
 
 module.exports = new InvoiceService()

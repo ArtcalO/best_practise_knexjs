@@ -1,19 +1,12 @@
 const invoiceService = require('../service/invoice');
 const invoiceItemsDAO = require('../dao/invoiceItems');
+const invoiceDAO = require('../dao/invoice');
 class InvoiceController{
 	async createInvoice(req, res){
 		try{
 			const {invoice} = req.body
 			const {data} = req.body
-			const id =  await invoiceService.createInvoice(invoice);
-			let insertPromises = []
-			for(let item of data){
-				item['invoiceId']=id.id
-			    insertPromises.push(invoiceItemsDAO.objCreateInvoiceItems(item))
-			}
-			Promise.all(insertPromises).then((res)=>console.log(res)).catch((err)=>{
-				invoiceService.deleteInvoice(id)
-			})
+			const id =  await invoiceService.createInvoice(invoice, data);
 			res.status(201).json(id);
 		} catch (err){
 			console.log(err)
@@ -62,8 +55,15 @@ class InvoiceController{
 	}
 	async splitInvoice(req, res){
 		try{
+			let invoices = req.body
+			let toUpdateInvoice = invoices.shift()
 			const id = parseInt(req.params.id)
-			const obj =  await invoiceService.splitInvoice(id, req.body);
+			const obj =  await invoiceDAO.updateInvoice(id, toUpdateInvoice.invoice);
+			for(let item of invoices){
+				const {invoice} = item
+				const {data} = item
+				await invoiceService.createInvoice(invoice, data);
+			}
 			res.status(201).json(obj);
 		} catch (err){
 			console.log(err)

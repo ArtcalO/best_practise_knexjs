@@ -19,6 +19,7 @@ class InvoiceDAO{
 	};
 
 	async updateInvoice(id, data){
+		console.log("id=================", id, data)
 		try{
 			const updatedInvoice = await invoiceModel.transaction(async trx=>{
 				const updatedInvoice = await invoiceModel.query(trx).patchAndFetchById(id,data);
@@ -50,7 +51,7 @@ class InvoiceDAO{
 		return retrievedInvoice;
 	};
 	async retrieveAllInvoice(){
-		const retrievedInvoice = await invoiceModel.query().withGraphFetched('[items]');;
+		const retrievedInvoice = await invoiceModel.query().withGraphFetched('[items.[items]]');;
 		return retrievedInvoice;
 	};
 }
